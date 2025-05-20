@@ -63,7 +63,25 @@ Protocol Layers terdiri dari 5 Layers yaitu:
 - Connection-oriented (3-way handshake)  
 - Andal dan berurutan  
 - Flow control dan congestion control  
-**Contoh:** HTTP, Email  
+**Contoh:** HTTP, Email
+
+
+### Multiplexing dan Demultiplexing
+- Multiplexing : mengirim data dari beberapa aplikasi keluar ke jaringan
+  Proses menggabungkan data dari banyak aplikasi yang berbeda di satu host untuk dikirim ke jaringan.
+  📥 Dari banyak aplikasi → ➡️ satu koneksi jaringan keluar
+- Demultiplexing : menerima data dan mengarahkan ke aplikasi yang benar
+  Proses menerima data dari jaringan dan mengarahkan ke aplikasi yang tepat di host tujuan.
+  ➡️ Data masuk dari jaringan → 📤 diarahkan ke aplikasi yang sesuai
+
+| Fitur             | **TCP (Connection-Oriented)**                | **UDP (Connectionless)**               |
+| ----------------- | -------------------------------------------- | -------------------------------------- |
+| Koneksi           | Ya (handshake)                               | Tidak                                  |
+| Identitas koneksi | 4-tuple (src IP, src port, dst IP, dst port) | 2-tuple (dst IP, dst port)             |
+| Multiplexing      | Berdasarkan banyak koneksi TCP               | Berdasarkan port tujuan                |
+| Demultiplexing    | Sangat spesifik (per koneksi)                | Lebih sederhana, berdasarkan port saja |
+| Contoh Protokol   | HTTP, FTP, SMTP                              | DNS, VoIP, DHCP                        |
+
 
 ---
 
@@ -107,6 +125,16 @@ Protocol Layers terdiri dari 5 Layers yaitu:
 | Fast Retransmit     | Retransmisi cepat tanpa tunggu timeout          |
 | Fast Recovery       | Kurangi cwnd, lalu lanjut dari pertengahan      |
 
+AIMD adalah algoritma kontrol kemacetan pada TCP
+cwnd adalah ukuran jendela yang mengontrol berapa banyak data (segmen) yang bisa dikirim sebelum menunggu ACK.
+fungsi utama :
+- Mengatur jumlah maksimum data yang bisa berada di jaringan sekaligus.
+- Mencerminkan tingkat kepercayaan sender terhadap kondisi jaringan.
+ssthresh adalah batas antara dua fase:
+- Slow Start (eksponensial)
+- Congestion Avoidance (linear)
+📌 Fungsi Utama:
+Menentukan kapan TCP berhenti naik cepat dan mulai naik pelan.
 ---
 
 ## Network Layer
